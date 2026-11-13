@@ -1,0 +1,102 @@
+[
+  {
+    "name": "MacBook Air M4",
+    "brand": "Apple",
+    "price": 99900,
+    "processor": "Apple M4",
+    "ram": 16,
+    "storage": 512,
+    "stock": 12,
+    "description": "Lightweight laptop for everyday productivity, study, and creative work."
+  },
+  {
+    "name": "Dell XPS 13",
+    "brand": "Dell",
+    "price": 124990,
+    "processor": "Intel Core Ultra 7",
+    "ram": 16,
+    "storage": 512,
+    "stock": 8,
+    "description": "Compact premium laptop with a high-resolution display and portable design."
+  },
+  {
+    "name": "HP Pavilion 15",
+    "brand": "HP",
+    "price": 64990,
+    "processor": "AMD Ryzen 5 7530U",
+    "ram": 16,
+    "storage": 512,
+    "stock": 15,
+    "description": "Versatile laptop for office work, browsing, and everyday computing."
+  },
+  {
+    "name": "Lenovo IdeaPad Slim 5",
+    "brand": "Lenovo",
+    "price": 72990,
+    "processor": "AMD Ryzen 7 7730U",
+    "ram": 16,
+    "storage": 1024,
+    "stock": 10,
+    "description": "Slim everyday laptop with ample memory and storage for multitasking."
+  },
+  {
+    "name": "ASUS ROG Zephyrus G14",
+    "brand": "ASUS",
+    "price": 159990,
+    "processor": "AMD Ryzen 9 8945HS",
+    "ram": 32,
+    "storage": 1024,
+    "stock": 5,
+    "description": "Performance-focused laptop designed for gaming and demanding creative workloads."
+  },
+  {
+    "name": "Acer Aspire 7",
+    "brand": "Acer",
+    "price": 57990,
+    "processor": "Intel Core i5-12450H",
+    "ram": 16,
+    "storage": 512,
+    "stock": 18,
+    "description": "Practical laptop for study, work, and moderate performance tasks."
+  },
+  {
+    "name": "MSI Modern 14",
+    "brand": "MSI",
+    "price": 61990,
+    "processor": "Intel Core i7-1355U",
+    "ram": 16,
+    "storage": 512,
+    "stock": 7,
+    "description": "Portable productivity laptop with a clean design and useful connectivity."
+  },
+  {
+    "name": "Samsung Galaxy Book4",
+    "brand": "Samsung",
+    "price": 84990,
+    "processor": "Intel Core 7 150U",
+    "ram": 16,
+    "storage": 512,
+    "stock": 9,
+    "description": "Thin laptop suited to productivity and integration with compatible Samsung devices."
+  },
+  {
+    "name": "Microsoft Surface Laptop 7",
+    "brand": "Microsoft",
+    "price": 139990,
+    "processor": "Snapdragon X Plus",
+    "ram": 16,
+    "storage": 512,
+    "stock": 6,
+    "description": "Premium portable laptop with an efficient processor and a touchscreen display."
+  },
+  {
+    "name": "Lenovo LOQ 15",
+    "brand": "Lenovo",
+    "price": 94990,
+    "processor": "Intel Core i5-13450HX",
+    "ram": 16,
+    "storage": 512,
+    "stock": 11,
+    "description": "Gaming-oriented laptop for gaming, development, and other demanding applications."
+  }
+]
