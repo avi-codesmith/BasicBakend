@@ -20,14 +20,19 @@ const getAllLaptops = async (req, res) => {
 };
 
 const getLaptopByID = async (req, res) => {
-  const laptop = await Laptop.findById(req.params.id);
+  // const laptop = await Laptop.findById(req.params.id);
+  const laptop = true;
 
   try {
-    res.status(200).json({
-      status: 'success',
-      message: 'Laptop fetched.',
-      body: laptop,
-    });
+    if (!laptop) {
+      throw new Error('This laptop does not exists');
+    } else {
+      res.status(200).json({
+        status: 'success',
+        message: 'Laptop fetched.',
+        body: laptop,
+      });
+    }
   } catch (err) {
     res.status(500).json({
       status: 'fail',
@@ -48,16 +53,26 @@ const addLaptop = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       status: 'fail',
-      message: [err, 'Something went wrong, Cannot add laptop'],
+      message: err.message || 'Something went wrong, Cannot add laptop',
     });
   }
 };
 
 const updateProductByID = async (req, res) => {
-  const laptop = await Laptop.findByIdAndUpdate(req.params.id, req.body, {
-    returnDocument: 'after', // return the updated document (after)
-    runValidators: true,
-  });
+  const laptopIds = await Laptop.find().distinct('_id');
+
+  const ids = laptopIds.map((id) => id.toString());
+
+  let laptop;
+
+  if (ids.includes(req.params.id)) {
+    laptop = await Laptop.findByIdAndUpdate(req.params.id, req.body, {
+      returnDocument: 'after', // return the updated document (after)
+      runValidators: true,
+    });
+  } else {
+    throw new Error('The given laptop does not exists');
+  }
 
   try {
     res.status(200).json({
@@ -68,13 +83,21 @@ const updateProductByID = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       status: 'fail',
-      message: [err, 'Something went wrong, Cannot update laptop'],
+      message: err.message || 'Something went wrong, Cannot update laptop',
     });
   }
 };
 
 const deleteProductByID = async (req, res) => {
-  await Laptop.findByIdAndDelete(req.params.id);
+  const laptopId = await Laptop.find().distinct('_id');
+
+  const ids = laptopId.map((id) => id.toString());
+
+  if (ids.includes(req.params.id)) {
+    await Laptop.findByIdAndDelete(req.params.id);
+  } else {
+    throw new Error('The given laptop does not exists');
+  }
 
   try {
     res.status(200).json({
@@ -85,7 +108,7 @@ const deleteProductByID = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       status: 'fail',
-      message: [err, 'Something went wrong, Cannot delete laptop'],
+      message: err.message || 'Something went wrong, Cannot delete laptop',
     });
   }
 };

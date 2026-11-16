@@ -21,6 +21,16 @@ const laptopSchema = mongoose.Schema({
     type: Number,
     required: [true, 'A laptop should have its price.'],
     max: [2000000, 'Mention a valid price'],
+    validate: {
+      validator: function (val) {
+        if (val >= 100000) {
+          return this.description?.length <= 50;
+        }
+
+        return true;
+      },
+      message: 'Please add a detailed description of atleast 50 chracters.',
+    },
   },
 
   processor: {
@@ -46,7 +56,7 @@ const laptopSchema = mongoose.Schema({
 
   description: {
     type: String,
-    maxLength: [200, 'Maximum character length is 200 characters'],
+    maxLength: [400, 'Maximum character length is 200 characters'],
   },
 });
 
@@ -54,3 +64,5 @@ export const Laptop = mongoose.model('laptops', laptopSchema);
 
 //  MongoDB pluralised and convert model name to smallcase
 // ex- Laptop --> laptops (don't be confuse again)
+
+// ************* NEVER USE ARROW FUNC. IN VALIDATORS AS THEY DO NOT HAVE THEIR OWN THIS KEYWORD
