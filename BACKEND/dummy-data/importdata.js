@@ -26,7 +26,22 @@ async function importProducts() {
   process.exit();
 }
 
+async function deleteProducts() {
+  try {
+    await Laptop.deleteMany();
+    console.log('Data deleted from DB!');
+  } catch (err) {
+    console.log("Cannot delete data from DB -_-'");
+  }
+  process.exit();
+}
+
 if (process.argv[2] === '--import') {
   importProducts();
-  console.log('DATA PUSHED');
+  console.log('DATA PUSHED!');
+}
+
+if (process.argv[2] === '--delete') {
+  deleteProducts();
+  console.log('DATA DELETED!');
 }

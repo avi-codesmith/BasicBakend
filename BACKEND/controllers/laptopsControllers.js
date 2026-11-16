@@ -3,10 +3,12 @@ import { Laptop } from '../model/laptopModel.js';
 const getAllLaptops = async (req, res) => {
   try {
     const laptop = await Laptop.find();
+    console.log(laptop);
 
     res.status(200).json({
       status: 'success',
       message: 'Laptops are fetched!',
+      length: laptop.length,
       data: laptop,
     });
   } catch (err) {
@@ -17,46 +19,81 @@ const getAllLaptops = async (req, res) => {
   }
 };
 
-// const getLaptopByID = async (req, res, next) => {
-//   const id = Number(req.params.id) - 1;
-//   const laptop = await laptops[id];
+const getLaptopByID = async (req, res) => {
+  const laptop = await Laptop.findById(req.params.id);
 
-//   try {
-//     res.status(200).json({
-//       status: 'success',
-//       message: 'Laptop fetched.',
-//       body: laptop,
-//     });
-//   } catch (err) {
-//     res.status(500).json({
-//       status: 'fail',
-//       message: [err, 'Something went wrong, Cannot fecth laptops'],
-//     });
-//   }
-// };
+  try {
+    res.status(200).json({
+      status: 'success',
+      message: 'Laptop fetched.',
+      body: laptop,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      message: [err, 'Something went wrong, Cannot fecth laptop'],
+    });
+  }
+};
 
-// const addLaptop = async (req, res, next) => {
-//   console.log('adding...');
-//   try {
-//     let data = await { ...req.body };
+const addLaptop = async (req, res) => {
+  try {
+    const data = await Laptop.create(req.body);
 
-//     data.id = laptops.length + 1;
+    res.status(200).json({
+      status: 'success',
+      message: 'Product Added',
+      body: data,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      message: [err, 'Something went wrong, Cannot add laptop'],
+    });
+  }
+};
 
-//     laptops.push(data);
+const updateProductByID = async (req, res) => {
+  const laptop = await Laptop.findByIdAndUpdate(req.params.id, req.body, {
+    returnDocument: 'after', // return the updated document (after)
+    runValidators: true,
+  });
 
-//     res.status(200).json({
-//       status: 'success',
-//       message: 'Product Added',
-//       body: data,
-//     });
-//   } catch (err) {
-//     res.status(500).json({
-//       status: 'fail',
-//       message: [err, 'Something went wrong, Cannot add laptop'],
-//     });
-//   }
-// };
+  try {
+    res.status(200).json({
+      status: 'success',
+      message: 'Laptop updated!',
+      body: laptop,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      message: [err, 'Something went wrong, Cannot update laptop'],
+    });
+  }
+};
 
-// export { getAllLaptops, getLaptopByID, addLaptop };
+const deleteProductByID = async (req, res) => {
+  await Laptop.findByIdAndDelete(req.params.id);
 
-export { getAllLaptops };
+  try {
+    res.status(200).json({
+      status: 'success',
+      message: 'Laptop deleted!',
+      body: {},
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      message: [err, 'Something went wrong, Cannot delete laptop'],
+    });
+  }
+};
+
+export {
+  getAllLaptops,
+  getLaptopByID,
+  addLaptop,
+  updateProductByID,
+  deleteProductByID,
+};

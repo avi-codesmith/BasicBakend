@@ -14,7 +14,7 @@ const database = process.env.MONGO_URL.replace('<DB_PASSWORD>', password);
     await mongoose.connect(database, { dbName: 'PRODUCT' });
     console.log('DB connection successful!');
   } catch (err) {
-    console.lof('Cannot connect with database -_-');
+    console.log('Cannot connect with database -_-');
   }
 })(); //IIFE
 
