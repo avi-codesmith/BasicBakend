@@ -6,6 +6,7 @@ import {
   addLaptop,
   updateProductByID,
   deleteProductByID,
+  getLaptopsByBrand,
 } from '../controllers/laptopsControllers.js';
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.route('/products/:id').get(getLaptopByID); // read by ID
 router.route('/addproducts').post(addLaptop); // add product
 router.route('/updateproduct/:id').patch(updateProductByID); // update product
 router.route('/deleteproduct/:id').delete(deleteProductByID); // delete product
+router.route('/laptopsbybrand/:brand').get(getLaptopsByBrand);
 
 export default router;
